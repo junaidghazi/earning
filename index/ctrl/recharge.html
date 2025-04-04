@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recharge</title>
+    <link rel="stylesheet" href="/css/font/font.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <script src="/js/layui/layui.js"></script>
+    <link rel="stylesheet" href="/js/layui/css/layui.css" />
+    <style>
+      .recharge-page .title1 {
+        margin-top: 112px;
+        font-size: 20px;
+        line-height: 23px;
+        color: rgba(0, 0, 0, 1);
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .recharge-page .title2 {
+        margin-top: 7px;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 1);
+        margin-bottom: 18px;
+        font-family: "SegoeUI";
+        font-weight: bold;
+      }
+      .recharge-page .title-num {
+        color: rgba(0, 0, 0, 1);
+        font-size: 40px;
+        margin-bottom: 30px;
+      }
+
+      .select-list {
+        width: 100%;
+        height: 143px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+
+        font-family: "ArialMT";
+        display: none;
+
+        gap: 9px 22px;
+      }
+      .select-list li {
+        width: 56px;
+        height: 56px;
+        border: 1px solid rgba(183, 183, 183, 1);
+        color: rgba(183, 183, 183, 1);
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+
+        border-radius: 50%;
+        position: relative;
+      }
+
+      .select-list .icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(52, 76, 92, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .select-list .active {
+        border: 1px solid #003ea5;
+        color: #003ea5;
+      }
+      .select-list input {
+        width: 85%;
+        margin: auto;
+        color: rgba(183, 183, 183, 1);
+        font-size: 12px;
+        border-bottom: 1px solid rgba(183, 183, 183, 1);
+        text-align: center;
+      }
+
+      .recharge-page .btn-style {
+        height: 42px;
+        line-height: 42px;
+        background: linear-gradient(
+          180deg,
+          #003ea5 0%,
+          rgba(255, 255, 255, 1) 100%
+        );
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        margin: 20px auto;
+      }
+      .recharge-tip {
+        margin-top: 20px;
+        padding-left: 14px;
+        margin-bottom: 100px;
+        box-sizing: border-box;
+      }
+
+      .recharge-tip p {
+        width: 280px;
+        font-family: "SegoeUI";
+        font-size: 10px;
+        color: rgba(0, 0, 0, 1);
+        line-height: 14px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+      }
+      .recharge-tip p span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #003ea5;
+        flex-shrink: 0;
+      }
+      .sp-item {
+        width: 100%;
+        height: 40px;
+        border-radius: 30px;
+        background: #f1f1f1;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        padding: 7px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "SegoeUI";
+        color: rgba(0, 0, 0, 1);
+        font-size: 15px;
+        cursor: pointer;
+        margin: 10px auto;
+      }
+      .sp-item .left {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+      .sp-item .name {
+        font-size: 10px;
+      }
+      .sp-item .avatar {
+        height: 100%;
+      }
+      .sp-item .arrow {
+        width: 26.38px;
+        height: 26.38px;
+        border-radius: 50%;
+        background-image: url("/image/icon-rihgt.svg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      .sp-item.active .arrow {
+        background-image: url("/image/icon-right.png");
+        /*filter: grayscale(1);*/
+      }
+      #rechargeInput {
+        background: #f2f2f2;
+        width: 95%;
+        /*border-radius: 20px;*/
+        padding-left: 20px;
+        font-size: 20px;
+        height: 60px;
+        border: #003ea5 solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sp-bg recharge-page">
+      <div id="root" class="sp_system">
+        <section>
+          <div class="ww">
+            <div class="sp-relative">
+              <img
+                class="icon-back"
+                onclick="goBack()"
+                src="/image/back.png"
+                alt=""
+              />
+              <h5 class="page-title">Recharge</h5>
+              <img
+                class="page-icon"
+                src="/image/recharge-menu.png"
+                alt=""
+                onclick="goto('/index/my/caiwu.html')"
+              />
+            </div>
+            <div class="title1">Balance Recharge</div>
+            <div class="title-num">
+              <input
+                id="rechargeInput"
+                type="number"
+                name="price"
+                placeholder="Please enter amount"
+                style=""
+              />
+            </div>
+            <ul class="select-list">
+              <li class="active recharge-opt">₹100</li>
+              <li class="recharge-opt">₹500</li>
+              <li class="recharge-opt">₹1000</li>
+              <li class="recharge-opt">₹2000</li>
+              <li class="recharge-opt">₹5000</li>
+              <li class="recharge-opt">₹20000</li>
+              <li class="recharge-opt">₹50000</li>
+              <li class="select-input">
+                <img src="/image/input.svg" alt="" /><input
+                  id="selectInput"
+                  class="sp-hide"
+                  type="number"
+                />
+              </li>
+            </ul>
+            <div class="title2">Please choose the pay method</div>
+            <!-- Assuming $pay is available and correctly iterated -->
+            <div class="sp-item save-btn2" data-id="3">
+              <div class="left">
+                <img src="/image/head.jpg" alt="" class="avatar" />
+                <div><div class="num">PAY-Y</div></div>
+              </div>
+              <div class="arrow"></div>
+            </div>
+            <div class="sp-item save-btn2" data-id="11">
+              <div class="left">
+                <img src="/image/head.jpg" alt="" class="avatar" />
+                <div><div class="num">PAY-Q</div></div>
+              </div>
+              <div class="arrow"></div>
+            </div>
+            <div class="sp-item save-btn2" data-id="9">
+              <div class="left">
+                <img src="/image/head.jpg" alt="" class="avatar" />
+                <div><div class="num">PAY-X</div></div>
+              </div>
+              <div class="arrow"></div>
+            </div>
+            <div class="sp-item save-btn2" data-id="1">
+              <div class="left">
+                <img src="/image/head.jpg" alt="" class="avatar" />
+                <div><div class="num">PAY-Z</div></div>
+              </div>
+              <div class="arrow"></div>
+            </div>
+            <div class="sp-btn-success btn-style recharge_confirm">
+              Confirm Recharge
+            </div>
+            <div class="title2">Precautions</div>
+            <div class="recharge-tip">
+              <p>
+                <span></span>Confirm the recharge amount and fill in the UTR
+                number correctly
+              </p>
+              <p>
+                <span></span>
+                Every time you recharge, you need to re-acquire the receiving
+                account at the cashier.
+              </p>
+              <p>
+                <span></span>
+                For recharge questions, please contact onlinecustomer service.
+              </p>
+              <!--<p>--><!--  <span></span>All funds for the Sosyo project are regulated by--><!--  the Indian government bank.--><!--</p>-->
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script>
+      $(document).ready(function () {
+        // 自动聚焦到输入框
+        $("#rechargeInput").focus();
+
+        var typee = "";
+
+        // 默认选择第一个支付通道
+        var firstSpItem = $(".recharge-page .sp-item").first();
+        firstSpItem.addClass("active");
+        typee = firstSpItem.data("id");
+
+        $(".select-list li").click(function () {
+          $(this).addClass("active").siblings().removeClass("active");
+          if ($(this).hasClass("select-input")) {
+            $(this).find("img").hide();
+            $(this).find("input").show().focus();
+          }
+        });
+
+        $("#selectInput").blur(function () {
+          if ($(this).val().length === 0) {
+            $(this).hide().siblings().show();
+          }
+        });
+
+        $(".recharge-page .sp-item").click(function () {
+          $(".recharge-page .sp-item").removeClass("active"); // 移除所有项的激活状态
+          $(this).addClass("active"); // 仅为当前点击项添加激活状态
+          typee = $(this).data("id"); // 更新支付类型
+        });
+
+        $(".recharge-opt").click(function () {
+          var tt = $(this).text().replace("₹", "");
+          $("input[name=price]").val(tt);
+          $(".recharge-opt").removeClass("active");
+          $(this).addClass("active");
+        });
+
+        $(".recharge_confirm").on("click", function () {
+          console.log("支付类型:", typee);
+          var price = $("input[name=price]").val();
+          var minrecharge = 500;
+          if (price < 500) {
+            layer.msg(
+              "Reminder: You can manually enter the amount, the minimum recharge is 500."
+            );
+            return false;
+          }
+          if (typee == "") {
+            layer.msg("Select Payment Method");
+            return false;
+          }
+          if (price == "") {
+            layer.msg("Enter the amount");
+            return false;
+          }
+          console.log(price);
+          console.log(typee);
+          layer.open({ type: 3 });
+
+          // 调用充值接口
+          $.post(getPaymentUrl(typee), { price: price }, function (data) {
+            try {
+              var jsonData = JSON.parse(data);
+              console.log(jsonData);
+              layer.closeAll();
+              if (jsonData.code == 400) {
+                layer.msg(jsonData.message);
+              }
+              if (jsonData.code == 200) {
+                window.location.href = jsonData.data;
+              }
+            } catch (e) {
+              console.error("Parsing error:", e);
+              console.log("Response data:", data);
+              layer.closeAll();
+              layer.msg("An error occurred. Please try again later.");
+            }
+          });
+        });
+
+        function getPaymentUrl(type) {
+          switch (type) {
+            case 1:
+            case 2:
+              return "/index/pay/newcollection2.html";
+            case 3:
+              return "/index/pay/newcollection3.html";
+            case 4:
+              return "/index/pay/yingshanghui.html";
+            case 5:
+              return "/index/pay/allapay.html";
+            case 6:
+              return "/index/pay/wow.html";
+            case 7:
+              return "/index/pay/lpay.html";
+            case 8:
+              return "/index/pay/cspay.html";
+            case 9:
+              return "/index/pay/sunpay2.html";
+            case 10:
+              return "/index/pay/sunpay.html";
+            case 11:
+              return "/index/pay/mlpay.html";
+            case 12:
+              return "/index/pay/mojopay.html";
+            case 15:
+              return "/index/pay/deipay.html";
+            case 13:
+              return "/index/pay/hrpay.html";
+            default:
+              return "";
+          }
+        }
+      });
+
+      function goto(url) {
+        window.location.href = url;
+      }
+    </script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"92aaecee2fe9b2aa","version":"2025.3.0","r":1,"token":"5cd336c1bb8b48adabfa04af8b6fcf2d","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

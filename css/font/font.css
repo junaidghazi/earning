@@ -1,0 +1,26 @@
+@font-face {
+    /* 重命名字体名 */
+    font-family: "Arial";
+    /* 引入字体 */
+    src: url("/arial.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    /* 重命名字体名 */
+    font-family: "SegoeUI";
+    /* 引入字体 */
+    src: url("/segoeui.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    /* 重命名字体名 */
+    font-family: "ArialMT";
+    /* 引入字体 */
+    src: url("/ArialMT.ttf");
+    font-weight: normal;
+    font-style: normal;
+}

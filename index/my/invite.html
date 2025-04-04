@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invite</title>
+    <link rel="stylesheet" href="/css/layui.css" />
+    <link rel="stylesheet" href="/css/font/font.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <style>
+      #root {
+        padding-bottom: 100px;
+      }
+
+      .invite-page .qr-wrap {
+        width: 150px;
+        height: 150px;
+        background: url("/image/code-border.png") no-repeat;
+        background-size: 100% 100%;
+        margin: 20px auto;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        filter: grayscale(1);
+        justify-content: center;
+      }
+
+      .invite-page .copy-box-wrap {
+        width: 100%;
+        /*height: 97px;*/
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        margin: 110px auto 8px;
+        justify-content: space-evenly;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .invite-page .copy-box {
+        width: 100%;
+        font-family: "ArialMT";
+        padding: 3px 15px;
+        box-sizing: border-box;
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex-direction: row;
+        border-bottom: 1px solid #f2f2f2;
+        padding: 10px;
+      }
+
+      .invite-page .copy-box .name {
+        font-size: 15px;
+      }
+
+      .invite-page .copy-box p {
+        font-size: 12px;
+        word-break: break-all;
+        /* 允许单词内换行 */
+        white-space: nowrap;
+        /* 禁止换行 */
+        overflow: hidden;
+        /* 隐藏超出部分 */
+        text-overflow: ellipsis;
+        /* 超出部分显示为省略号 */
+        width: 200px;
+        color: #aaa;
+      }
+
+      .invite-page .copy-btns {
+        width: 16px;
+        cursor: pointer;
+      }
+
+      .invite-tab {
+        width: 170px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+
+      .invite-page .sp-box {
+        width: 100%;
+        /*height: 172px;*/
+        border-radius: 15px;
+        background: linear-gradient(
+          180deg,
+          #003ea5 0%,
+          rgba(255, 255, 255, 1) 100%
+        );
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      }
+
+      .invite-page .sp-tip {
+        font-family: "SegoeUI";
+        color: #003ea5;
+        font-size: 10px;
+        text-align: center;
+        padding: 4px 20px;
+        box-sizing: border-box;
+        line-height: 2;
+      }
+
+      .invite-page .title1 {
+        font-family: "SegoeUI";
+        font-size: 20px;
+        color: rgba(0, 0, 0, 1);
+      }
+
+      .invite-page .sp-ul {
+        padding: 0 10px;
+        box-sizing: border-box;
+        font-family: "SegoeUI";
+      }
+
+      .invite-page .sp-li {
+        width: 100%;
+        padding-bottom: 4px;
+        /* border-bottom: 1px solid rgba(183, 183, 183, 1); */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 10px;
+        color: rgba(16, 16, 16, 1);
+        margin-top: 6px;
+        line-height: 1.4;
+        position: relative;
+      }
+
+      .invite-page .sp-li::after {
+        content: "";
+        width: 88%;
+        left: 6%;
+        height: 1px;
+        background-color: rgba(183, 183, 183, 1);
+        position: absolute;
+        bottom: -1px;
+      }
+
+      .invite-page .sp-li .status {
+        font-size: 10px;
+        color: rgba(0, 141, 33, 1);
+      }
+
+      .invite-page .sp-li .time {
+        font-size: 15px;
+        font-family: "ArialMT";
+      }
+
+      .invite-page .sp-li .name {
+        font-size: 15px;
+        color: rgba(0, 141, 33, 1);
+      }
+
+      .invite-page .sp-li.wrong .status {
+        color: rgba(255, 0, 0, 1);
+      }
+
+      .invite-page .sp-li.wrong .name {
+        color: rgba(0, 175, 157, 1);
+      }
+
+      .sp-flex-x p {
+        width: 150px;
+        word-break: break-all;
+      }
+
+      .btn-style {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background: linear-gradient(91deg, #575757, #003ea5);
+        /* width: 100px; */
+        height: 30px;
+        border-radius: 10px;
+        color: #fff;
+        padding: 15px;
+      }
+
+      .copy-btn {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="invite-page sp-bg">
+      <div id="root" class="sp_system">
+        <section>
+          <div class="ww">
+            <div class="sp-relative">
+              <h5 class="page-title">Invite</h5>
+              <img
+                class="icon-back"
+                onclick="goBack()"
+                src="/image/back.png"
+                alt=""
+              />
+            </div>
+            <div class="copy-box-wrap">
+              <div class="copy-box">
+                <div class="sp-flex-x">
+                  <div class="name">Invitation link:</div>
+                </div>
+                <p id="cpLink">
+                  https://www.wywso1mp-kkbsec-ndfceb7cc.com/index/user/register/invite_code/rum9o.html
+                </p>
+              </div>
+              <div class="copy-box">
+                <div class="sp-flex-x">
+                  <div class="name">Invitation code:</div>
+                </div>
+                <p id="cpCode">rum9o</p>
+              </div>
+              <div class="copy-btn">
+                <button
+                  class="btn-style"
+                  onclick="copy_txt('https://www.wywso1mp-kkbsec-ndfceb7cc.com/index/user/register/invite_code/rum9o.html')"
+                >
+                  Copy invitation link</button
+                ><button class="btn-style" onclick="copy_txt('rum9o')">
+                  Copy invitation code
+                </button>
+              </div>
+            </div>
+            <!--<div class="invite-tab sp-btn-success btn-style"  onclick="copyText('https://www.wywso1mp-kkbsec-ndfceb7cc.com/index/user/register/invite_code/rum9o.html')">-->
+            <!--  Invite friends-->
+            <!--</div>-->
+            <div
+              class="sp-box"
+              style="
+                background: url(/image/invitebg.jpg);
+                background-size: contain;
+              "
+            >
+              <ul>
+                <li style="text-align: justify">
+                  <span style="font-size: 22px"
+                    ><span style="color: #000000"
+                      ><strong><em>Invitation Commission：</em></strong></span
+                    ></span
+                  >
+                </li>
+              </ul>
+
+              <hr />
+              <ul>
+                <li style="text-align: justify">
+                  <span style="font-size: 16px"
+                    ><span style="color: #000000"
+                      ><em><strong>level 1 : </strong></em></span
+                    ></span
+                  ><span style="font-size: 22px"
+                    ><span style="color: #000000"
+                      ><em><strong>27%&nbsp;</strong></em></span
+                    ></span
+                  >
+                </li>
+              </ul>
+
+              <hr />
+              <ul>
+                <li style="text-align: justify">
+                  <span style="font-size: 16px"
+                    ><span style="color: #000000"
+                      ><em><strong>level 2&nbsp;: </strong></em></span
+                    ></span
+                  ><span style="font-size: 22px"
+                    ><span style="color: #000000"
+                      ><em><strong>3%</strong></em></span
+                    ></span
+                  ><span style="font-size: 16px"
+                    ><span style="color: #000000"
+                      ><em><strong>&nbsp;</strong></em></span
+                    ></span
+                  >
+                </li>
+              </ul>
+
+              <hr />
+              <ul>
+                <li style="text-align: justify">
+                  <span style="font-size: 16px"
+                    ><span style="color: #000000"
+                      ><em><strong>level 3: </strong></em></span
+                    ></span
+                  ><span style="font-size: 22px"
+                    ><span style="color: #000000"
+                      ><em><strong>2%</strong></em></span
+                    ></span
+                  >
+                </li>
+              </ul>
+
+              <p style="text-align: center">
+                <br />
+                &nbsp;
+              </p>
+            </div>
+            <div class="sp-tip">
+              Copy the invitation link, share it with friends, groups, social
+              platforms, and invite teams to earn extra invitation commissions!
+            </div>
+            <div class="qr-wrap">
+              <div id="qrcode"></div>
+            </div>
+            <!--<div class="title1">Invitation information</div>-->
+            <!--<ul class="sp-ul">-->
+            <!--  <li class="sp-li">-->
+            <!--    <div>-->
+            <!--      <div class="name">王大狗</div>-->
+            <!--      <p>Accept the invitation via QR code</p>-->
+            <!--      <div class="time">time:01-08-2024 09:55:49</div>-->
+            <!--    </div>-->
+            <!--    <div class="status">Real-name named</div>-->
+            <!--  </li>-->
+            <!--  <li class="sp-li">-->
+            <!--    <div>-->
+            <!--      <div class="name">王大狗</div>-->
+            <!--      <p>Accept the invitation via the invitation code</p>-->
+            <!--      <div class="time">time:01-08-2024 09:55:49</div>-->
+            <!--    </div>-->
+            <!--    <div class="status">Real-name named</div>-->
+            <!--  </li>-->
+            <!--  <li class="sp-li wrong">-->
+            <!--    <div>-->
+            <!--      <div class="name">王大狗</div>-->
+            <!--      <p>Accept the invitation via the invitation code</p>-->
+            <!--      <div class="time">time:01-08-2024 09:55:49</div>-->
+            <!--    </div>-->
+            <!--    <div class="status">No real name</div>-->
+            <!--  </li>-->
+            <!--</ul>-->
+          </div>
+          <!-- 底部 -->
+          <div class="fix-bottom">
+            <div class="" id="homeNav" onclick="goto('/index/home.html')">
+              <div class="fix-icon fix-icon1"></div>
+              <p>Home</p>
+            </div>
+            <div class="active" id="invitationbtn">
+              <div class="fix-icon fix-icon2"></div>
+              <p>Invite</p>
+            </div>
+            <div
+              class=""
+              id="teamNav"
+              onclick="goto('/index/ctrl/junior.html')"
+            >
+              <div class="fix-icon fix-icon3"></div>
+              <p>Team</p>
+            </div>
+            <div class="" id="myNav" onclick="goto('/index/my/index.html')">
+              <div class="fix-icon fix-icon4"></div>
+              <p>My</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <input
+      name=""
+      id="webcopyinput"
+      type="text"
+      style="
+        color: #ff0000;
+        font-size: 20px;
+        width: 1px;
+        height: 1px;
+        border: hidden;
+        font-weight: bold;
+        text-align: center;
+      "
+      value=""
+    />
+    <script src="/js/layui.js"></script>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"
+      integrity="sha512-NFUcDlm4V+a2sjPX7gREIXgCSFja9cHtKPOL1zj6QhnE0vcY695MODehqkaGYTLyL2wxe/wtr4Z49SvqXq12UQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      function goto(url) {
+        window.location.href = url;
+      }
+
+      function copy_txt(xx) {
+        //var text = document.createElement('input');
+        var text = document.getElementById("webcopyinput");
+        text.id = "webcopyinput";
+        text.value = "" + xx + "";
+        //text.style.position = 'fixed';
+        // text.style.top = '- 10000px';
+        // document.body.appendChild(text);
+        text.focus(); //给input输入框聚焦
+        text.setSelectionRange(0, text.value.length); //设置input框选中的范围
+        copied = document.execCommand("Copy"); //执行复制操作
+        text.blur();
+        copied = false;
+        document.body.scrollTop = 0;
+        layer.msg("Copy success");
+      }
+
+      jQuery("#qrcode").qrcode({
+        render: "canvas",
+        width: 100,
+        height: 100,
+        typeNumber: -1, //计算模式
+        correctLevel: 2, //二维码纠错级别
+        text: "https://www.wywso1mp-kkbsec-ndfceb7cc.com/index/user/register/invite_code/rum9o.html",
+        canvas: {
+          id: "my-canvas",
+        },
+      });
+    </script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"92aa68ad4bfe21d7","version":"2025.3.0","r":1,"token":"5cd336c1bb8b48adabfa04af8b6fcf2d","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

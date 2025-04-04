@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team</title>
+    <link rel="stylesheet" href="/css/layui.css" />
+    <link rel="stylesheet" href="/css/font/font.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <style>
+      .team-page {
+        padding-bottom: 100px;
+        background-color: rgba(245, 245, 245, 1);
+      }
+      .ww {
+        font-weight: bold;
+      }
+
+      .team-cart {
+      }
+      .team-row {
+        width: 100%;
+        padding: 60px 0 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Arial";
+        scale: 0;
+        font-size: 30px;
+        color: rgba(0, 0, 0, 1);
+      }
+      .team-row .left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .sp-content {
+        width: 100%;
+        margin-top: 20px;
+      }
+      .sp-box {
+        width: 100%;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        padding: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+      .sp-box .title {
+        font-size: 15px;
+        font-family: "ArialMT";
+
+        color: rgba(67, 67, 67, 1);
+        margin-bottom: 5px;
+      }
+      .sp-box .sp-img {
+        width: 300px;
+        margin: 0 auto;
+        display: block;
+      }
+      .sp-box .row {
+        width: 100%;
+        display: flex;
+      }
+      .sp-box .row .item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-family: "ArialMT";
+        font-size: 14px;
+        color: rgba(67, 67, 67, 1);
+        line-height: 1.4;
+      }
+      .sp-card {
+        width: 100%;
+        /*height: 76px;*/
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+
+        border: 1px solid #003ea5;
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        margin-bottom: 12px;
+        position: relative;
+
+        color: #003ea5;
+        font-family: "ArialMT";
+        font-size: 15px;
+      }
+      .sp-card .name {
+        text-transform: uppercase;
+        position: absolute;
+        top: -15px;
+        left: 0;
+
+        width: 96px;
+        height: 30px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+
+        border: 1px solid #003ea5;
+
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        text-align: center;
+        line-height: 30px;
+        box-sizing: border-box;
+      }
+      .sp-card .sp-num {
+        width: 96px;
+        text-align: center;
+      }
+      .sp-card ul {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 10px;
+        line-height: 2;
+        text-align: left;
+        padding-bottom: 6px;
+        box-sizing: border-box;
+      }
+
+      .sp-card .time {
+        position: absolute;
+        right: 12px;
+        bottom: 2px;
+        line-height: 1;
+        font-size: 8px;
+      }
+      .level {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px auto;
+      }
+      .level div {
+        background: #f3f3f3;
+        width: 33.33%;
+        text-align: center;
+        font-size: 24px;
+        height: 40px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+      }
+      .level .active {
+        color: #fff;
+        background: #003ea5 !important;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        color: #003ea5;
+      }
+      .disabled {
+        color: #ccc;
+      }
+      li.active {
+        font-weight: bold;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sp-bg team-page">
+      <div id="root" class="sp_system">
+        <section>
+          <div class="ww team-cart">
+            <div class="team-row demo-dropdown-base">
+              <div class="left">
+                <span> LV1</span><img src="/image/arrow-d-black.png" alt="" />
+              </div>
+              <img class="icon-search" src="/image/icon-search.png" alt="" />
+            </div>
+            <div class="sp-content">
+              <div class="sp-cart-wrap sp-team-tab">
+                <div class="sp-box">
+                  <div class="row">
+                    <div class="item">
+                      <div class="icon-wrap">
+                        <!--<img src="/image/team1.png" alt="" />-->
+                        <div class="num">0.00</div>
+                        <p>Team assets</p>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="icon-wrap">
+                        <!--<img src="/image/team2.png" alt="" />-->
+                        <div class="num">0.00</div>
+                        <p>Team recharge</p>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="icon-wrap">
+                        <!--<img src="/image/team3.png" alt="" />-->
+                        <div class="num">0</div>
+                        <p>Team Number</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="level">
+                  <div
+                    class="active"
+                    onclick="window.location.href='/index/ctrl/junior?level=1'"
+                  >
+                    Lv.1
+                  </div>
+                  <div
+                    class=" "
+                    onclick="window.location.href='/index/ctrl/junior?level=2'"
+                  >
+                    Lv.2
+                  </div>
+                  <div
+                    class=" "
+                    onclick="window.location.href='/index/ctrl/junior?level=3'"
+                  >
+                    Lv.3
+                  </div>
+                </div>
+                <span class="notdata">No record</span>
+              </div>
+            </div>
+          </div>
+          <!-- 底部 -->
+          <div class="fix-bottom">
+            <div class="" id="homeNav" onclick="goto('/index/home.html')">
+              <div class="fix-icon fix-icon1"></div>
+              <p>Home</p>
+            </div>
+            <div
+              class=""
+              id="invitationbtn"
+              onclick="goto('/index/my/invite.html')"
+            >
+              <div class="fix-icon fix-icon2"></div>
+              <p>Invite</p>
+            </div>
+            <div class="active" id="teamNav">
+              <div class="fix-icon fix-icon3"></div>
+              <p>Team</p>
+            </div>
+            <div class="" id="myNav" onclick="goto('/index/my/index.html')">
+              <div class="fix-icon fix-icon4"></div>
+              <p>My</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="/js/layui.js"></script>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script>
+      function goto(url) {
+        window.location.href = url;
+      }
+      layui.use(["dropdown"], function () {
+        var dropdown = layui.dropdown;
+        var level =
+          new URLSearchParams(window.location.search).get("level") || "1"; // 获取URL中的level参数，默认为1
+
+        // 下拉菜单的数据
+        var dropdownData = [
+          {
+            title: "LV1",
+            id: 1, // 用于构建跳转链接
+            index: 0,
+          },
+          {
+            title: "LV2",
+            id: 2,
+            index: 1,
+          },
+          {
+            title: "LV3",
+            id: 3,
+            index: 2,
+          },
+        ];
+
+        // 渲染下拉菜单
+        dropdown.render({
+          elem: ".demo-dropdown-base",
+          data: dropdownData,
+          click: function (obj) {
+            window.location.href = "/index/ctrl/junior?level=" + obj.id;
+          },
+        });
+
+        // 设置下拉菜单初始显示值
+        var initialItem = dropdownData.find((item) => item.id == level);
+        if (initialItem) {
+          document.querySelector(".demo-dropdown-base span").textContent =
+            initialItem.title;
+        }
+      });
+    </script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"92aa6297dee00e2f","version":"2025.3.0","r":1,"token":"5cd336c1bb8b48adabfa04af8b6fcf2d","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

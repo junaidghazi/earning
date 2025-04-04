@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My</title>
+    <link rel="stylesheet" href="/css/layui.css" />
+    <link rel="stylesheet" href="/css/font/font.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <style>
+      /********************** my  start ********************/
+
+      .my-page {
+        font-family: "ArialMT";
+        color: rgba(0, 0, 0, 1);
+      }
+
+      .ww {
+        font-weight: bold;
+      }
+
+      .my-page .ww {
+        padding-bottom: 90px;
+      }
+
+      .info-row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding-top: 40px;
+        font-size: 15px;
+      }
+
+      .info-row .infos {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #fff;
+      }
+
+      .info-row .infos .name {
+        font-size: 25px;
+      }
+
+      .info-row .sp-pic {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+      }
+
+      .title1 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .title2 {
+        font-size: 25px;
+        margin-bottom: 5px;
+      }
+
+      .info-row .sp-icon {
+        cursor: pointer;
+      }
+
+      .my-page .info-card {
+        width: 100%;
+        font-size: 15px;
+        color: rgba(0, 0, 0, 1);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .my-page .info-card > div {
+        width: 160px;
+        height: 90px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 233, 171, 0.81) 0%,
+          rgba(255, 255, 255, 1) 100%
+        );
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        cursor: pointer;
+        padding-left: 5px;
+        box-sizing: border-box;
+        position: relative;
+        padding-top: 35px;
+      }
+
+      .my-page .info-card .icon1 {
+        width: 40px;
+        position: absolute;
+        left: -5px;
+        top: -3px;
+      }
+
+      .my-page .info-card .icon2 {
+        width: 52px;
+        position: absolute;
+        left: -8px;
+        top: -6px;
+      }
+
+      .my-page .info-card .name {
+        font-size: 20px;
+        line-height: 1;
+        margin-top: -5px;
+      }
+
+      .my-page .box-title {
+        font-family: "Arial";
+        margin-top: 12px;
+        margin-bottom: 12px;
+        color: rgba(0, 0, 0, 1);
+      }
+
+      .income-wrap {
+        width: 100%;
+        height: 116px;
+        border-radius: 15px;
+        background: rgba(239, 239, 239, 1);
+        position: relative;
+        margin-top: 14px;
+        color: rgba(120, 120, 120, 1);
+        padding: 3px 8px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 8px;
+        padding-top: 5px;
+      }
+
+      .income-wrap .row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .income-wrap .row .arrow {
+        margin-left: 4px;
+      }
+
+      .income-wrap .sp-content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(0, 0, 0, 1);
+        text-align: center;
+      }
+
+      .income-wrap .sp-content .num {
+        font-size: 18px;
+      }
+
+      .income-wrap .sp-content .tab {
+        width: 56px;
+        height: 21px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+        font-size: 12px;
+        line-height: 21px;
+        margin: 12px auto 0;
+      }
+
+      .income-wrap .sp-img {
+        width: 141px;
+      }
+
+      .sp-box {
+        width: 100%;
+        margin-top: 14px;
+      }
+
+      .sp-box > div {
+        width: 100%;
+        height: 38px;
+        /*border-radius: 15px;*/
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        box-sizing: border-box;
+        margin-bottom: 6px;
+      }
+
+      .sp-box .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 10px;
+        padding-left: 2px;
+        box-sizing: border-box;
+        height: 38px;
+        font-size: 12px;
+        color: rgba(123, 123, 123, 1);
+        cursor: pointer;
+      }
+
+      .sp-box .item .arrow {
+        width: 9px;
+        height: 16px;
+        background: url("/image/go.png") no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .sp-box .item.active .arrow,
+      .sp-box .item:hover .arrow {
+        background-image: url("/image/go-active.png");
+        filter: grayscale(1);
+      }
+
+      .sp-box .item.active,
+      .sp-box .item:hover {
+        color: #003ea5;
+      }
+
+      .sp-box .sp-left {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .sp-box .img-wrap img {
+        width: 29px;
+        height: 29px;
+      }
+
+      .my-page .btn-style {
+        height: 36px;
+        font-family: "ArialMT";
+        line-height: 36px;
+      }
+
+      .sp-box1 {
+        width: 100%;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        padding: 10px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+
+      .sp-box1 .title {
+        font-size: 15px;
+        font-family: "ArialMT";
+        color: rgba(67, 67, 67, 1);
+        margin-bottom: 5px;
+      }
+
+      .sp-box1 .sp-img {
+        width: 300px;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .sp-box1 .row {
+        width: 100%;
+        display: flex;
+      }
+
+      .sp-box1 .row .item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-family: "ArialMT";
+        font-size: 14px;
+        color: rgba(67, 67, 67, 1);
+        line-height: 1.4;
+      }
+
+      /********************** my  end ********************/
+    </style>
+  </head>
+
+  <body>
+    <div class="sp-bg my-page">
+      <div id="root" class="sp_system">
+        <section>
+          <div class="ww">
+            <div class="info-row">
+              <div class="infos">
+                <img class="sp-pic" src="/image/head.jpg" alt="" />
+                <div>
+                  <p class="name">7396027545</p>
+                  <p>VIP0</p>
+                </div>
+              </div>
+              <img class="sp-icon" src="/image/icon-noti.png" alt="" />
+            </div>
+            <div class="sp-box1">
+              <div class="row">
+                <div class="item">
+                  <div class="icon-wrap">
+                    <!--<img src="/image/team1.png" alt="" />-->
+                    <div class="num">₹0.00</div>
+                    <p>Balance</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="icon-wrap">
+                    <!--<img src="/image/team2.png" alt="" />-->
+                    <div class="num">₹0</div>
+                    <p>Recharge</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="icon-wrap">
+                    <!--<img src="/image/team3.png" alt="" />-->
+                    <div class="num">₹0</div>
+                    <p>Income</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--<div class="title1">Balance</div>-->
+            <!--<div class="title2">₹0.00</div>-->
+            <!--<div class="info-card">-->
+            <!--  <div id="rechargebtn">-->
+            <!--    <img class="icon1" src="/image/arrow1.png" alt="" />-->
+            <!--    <div class="name">Recharge</div>-->
+            <!--    <div class="num">₹0</div>-->
+            <!--  </div>-->
+            <!--  <div>-->
+            <!--    <img class="icon2" src="/image/arrow2.png" alt="" />-->
+            <!--    <div class="name">Income</div>-->
+            <!--    <div class="num">₹0</div>-->
+            <!--  </div>-->
+            <!--</div>-->
+            <!--<div class="box-title">Revenue data report</div>-->
+            <div>
+              <!--<div class="sp-income-tab">-->
+              <!--  <div class="income-wrap">-->
+              <!--    <div class="row">-->
+              <!--      <p>Your Income</p>-->
+              <!--      <p class="demo-dropdown-base">-->
+              <!--        <span>month</span-->
+              <!--        ><img-->
+              <!--          class="arrow"-->
+              <!--          src="/image/arrow-d-grey.png"-->
+              <!--          alt=""-->
+              <!--        />-->
+              <!--      </p>-->
+              <!--    </div>-->
+              <!--    <div class="sp-content">-->
+              <!--      <div>-->
+              <!--        <div class="num">₹ 88888888888</div>-->
+              <!--        <div class="tab">- 0.69%</div>-->
+              <!--      </div>-->
+              <!--      <img class="sp-img" src="/image/my-pic.png" alt="" />-->
+              <!--    </div>-->
+              <!--  </div>-->
+              <!--</div>-->
+              <!--<div class="sp-income-tab sp-hide">-->
+              <!--  <div class="income-wrap">-->
+              <!--    <div class="row">-->
+              <!--      <p>Your Income</p>-->
+              <!--      <p class="demo-dropdown-base">-->
+              <!--        <span>month</span-->
+              <!--        ><img-->
+              <!--          class="arrow"-->
+              <!--          src="/image/arrow-d-grey.png"-->
+              <!--          alt=""-->
+              <!--        />-->
+              <!--      </p>-->
+              <!--    </div>-->
+              <!--    <div class="sp-content">-->
+              <!--      <div>-->
+              <!--        <div class="num">₹ 88888888888</div>-->
+              <!--        <div class="tab">- 0.69%</div>-->
+              <!--      </div>-->
+              <!--      <img class="sp-img" src="/image/my-pic.png" alt="" />-->
+              <!--    </div>-->
+              <!--  </div>-->
+              <!--</div>-->
+            </div>
+            <div class="box-title">My management</div>
+            <div class="sp-box">
+              <div
+                class="item"
+                id="companyProfileNav"
+                onclick="goto('https://down.wywso1mp-kkbsec-ndfceb7cc.com/BUDLIGHT.apk')"
+              >
+                <div class="sp-left">
+                  <div class="img-wrap">
+                    <img src="/image/download.png" alt="" />
+                  </div>
+                  <p>Download</p>
+                </div>
+                <div class="arrow"></div>
+              </div>
+              <div
+                class="item"
+                id="companyProfileNav"
+                onclick="goto('/index/my/msg')"
+              >
+                <div class="sp-left">
+                  <div class="img-wrap">
+                    <img src="/image/company.png" alt="" />
+                  </div>
+                  <p>Company Profile</p>
+                </div>
+                <div class="arrow"></div>
+              </div>
+              <div
+                class="item"
+                id="accountRecordNav"
+                onclick="goto('/index/my/caiwu')"
+              >
+                <div class="sp-left">
+                  <div class="img-wrap">
+                    <img src="/image/record.png" alt="" />
+                  </div>
+                  <p>Account Record</p>
+                </div>
+                <div class="arrow"></div>
+              </div>
+              <div
+                class="item"
+                id="collectionNav"
+                onclick="goto('/index/order/lixibao_list')"
+              >
+                <div class="sp-left">
+                  <div class="img-wrap">
+                    <img src="/image/funding.png" alt="" />
+                  </div>
+                  <p>My collection</p>
+                </div>
+                <div class="arrow"></div>
+              </div>
+              <div class="item" id="bankbtn" onclick="goto('/index/ctrl/set')">
+                <div class="sp-left">
+                  <div class="img-wrap">
+                    <img src="/image/setting.png" alt="" />
+                  </div>
+                  <p>My bank and password</p>
+                </div>
+                <div class="arrow"></div>
+              </div>
+            </div>
+            <div
+              class="sp-btn-success btn-style signout-btn"
+              style="margin-top: 20px"
+            >
+              Sign Out
+            </div>
+          </div>
+          <!-- 底部 -->
+          <div class="fix-bottom">
+            <div class="" id="homeNav" onclick="goto('/index/home.html')">
+              <div class="fix-icon fix-icon1"></div>
+              <p>Home</p>
+            </div>
+            <div
+              class=""
+              id="invitationbtn"
+              onclick="goto('/index/my/invite.html')"
+            >
+              <div class="fix-icon fix-icon2"></div>
+              <p>Invite</p>
+            </div>
+            <div
+              class=""
+              id="teamNav"
+              onclick="goto('/index/ctrl/junior.html')"
+            >
+              <div class="fix-icon fix-icon3"></div>
+              <p>Team</p>
+            </div>
+            <div class="active" id="myNav">
+              <div class="fix-icon fix-icon4"></div>
+              <p>My</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="/js/layui.js"></script>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script>
+      layui.use(function () {
+        var dropdown = layui.dropdown;
+        // 渲染
+        dropdown.render({
+          elem: ".demo-dropdown-base", // 绑定元素选择器，此处指向 class 可同时绑定多个元素
+          data: [
+            {
+              title: "month",
+              id: 100,
+              index: 0,
+            },
+            {
+              title: "year",
+              id: 101,
+              index: 1,
+            },
+          ],
+          click: function (obj) {
+            this.elem.find("span").text(obj.title);
+            $(".sp-income-tab").eq(obj.index).show().siblings().hide();
+          },
+        });
+      });
+
+      function goto(url) {
+        window.location.href = url;
+      }
+      $(".signout-btn").click(function () {
+        layer.confirm(
+          "Are you sure to log out?",
+          {
+            btn: ["Yes", "No"], //按钮
+            title: "Tips",
+          },
+          function () {
+            window.location.href = "/index/user/logout.html";
+          },
+          function () {}
+        );
+      });
+    </script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"92aa6a696b2e6691","version":"2025.3.0","r":1,"token":"5cd336c1bb8b48adabfa04af8b6fcf2d","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
